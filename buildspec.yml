@@ -1,0 +1,9 @@
+version: 1.0
+phases:
+  # pre_build:
+  #   commands:
+  #     - echo Restore started on `date`
+  #     - dotnet restore MvcMovie.csproj
+  build:
+    commands:
+      - echo Build started
