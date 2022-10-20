@@ -13,12 +13,12 @@ phases:
     commands:
       - apt-get update
       - apt-get install -y jq
-      - wget http://binaries.sonarsourse.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
       - echo "Current path is >>>"
       - sh $pwd
       - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
       - ls $pwd
-      - export PATH=$PATH:/sonar-scanner-4.7.0.2747-linux/bin/
+      - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
     commands:
       # - mvn test     
