@@ -50,10 +50,7 @@ phases:
       - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
     commands: 
-      - dotnet build  
-      - dotnet test --collect "Code Coverage" 
-      - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
-      - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
-      - cat result.json
-      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
+      - dotnet sonarscanner begin /k:"<sonar-project-key>" /d:sonar.login="<sonar-token>" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+      - dotnet build --no-incremental
+      - dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
+      - dotnet sonarscanner end /d:sonar.login="<sonar-token>"
