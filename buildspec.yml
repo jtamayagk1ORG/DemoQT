@@ -49,8 +49,9 @@ phases:
       - ls $pwd
       - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
-    commands:   
-      - dotnet test  
+    commands: 
+      - dotnet build  
+      - dotnet test --collect "Code Coverage" 
       - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
