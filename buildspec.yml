@@ -50,7 +50,7 @@ phases:
       - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
     commands: 
-      - dotnet sonarscanner begin /k:"<sonar-project-key>" /d:sonar.login="<sonar-token>" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+      - dotnet sonarscanner begin /k:"$Project" /d:sonar.login="$LOGIN" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
       - dotnet build --no-incremental
       - dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
-      - dotnet sonarscanner end /d:sonar.login="<sonar-token>"
+      - dotnet sonarscanner end /d:sonar.login="$LOGIN"
