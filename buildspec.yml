@@ -39,13 +39,13 @@ phases:
       
 
       - dotnet sonarscanner begin 
-        /k:"<$PROJECT>" 
-        /d:sonar.login="<$LOGIN>" 
+        /k:"$PROJECT" 
+        /d:sonar.login="$LOGIN" 
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css" 
         /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
       - dotnet build --no-incremental
       - dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
-      - dotnet sonarscanner end /d:sonar.login="<$LOGIN>"
+      - dotnet sonarscanner end /d:sonar.login="$LOGIN"
 
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT >result.json
       - cat result.json
