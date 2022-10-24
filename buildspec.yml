@@ -33,20 +33,20 @@ phases:
       - dotnet build
       - dotnet test
     #runs the sonar scanner cli and logs in to org account using evniornment variables
-      - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
-      - sleep 5
+      
     #packages and exports the results of the sonar scanner into results.json and sends that to the sonar org
       
 
       - dotnet sonarscanner begin
         /k:"$PROJECT"
         /d:sonar.login="$LOGIN"
-        /d:sonar.host.url="$HOST"
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
         /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
       - dotnet build --no-incremental
       - dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
+      - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
+      - sleep 5
 
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT >result.json
       - cat result.json
