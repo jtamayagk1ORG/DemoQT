@@ -36,16 +36,18 @@ phases:
       - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
       - sleep 5
     #packages and exports the results of the sonar scanner into results.json and sends that to the sonar org
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT >result.json
-      - cat result.json
+      
 
       - dotnet sonarscanner begin 
-        /k:"$PROJECT" 
-        /d:sonar.login="$LOGIN" 
+        /k:"<$PROJECT>" 
+        /d:sonar.login="<$LOGIN>" 
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css" 
         /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
       - dotnet build --no-incremental
       - dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
-      - dotnet sonarscanner end /d:sonar.login="$LOGIN"
+      - dotnet sonarscanner end /d:sonar.login="<$LOGIN>"
+
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT >result.json
+      - cat result.json
 
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
