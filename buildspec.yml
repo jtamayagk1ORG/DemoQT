@@ -20,6 +20,7 @@ phases:
       - apt-get install -y jq
     #Makes call to download the sonar scanner cli
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+      - dotnet tool install --global dotnet-sonarscanner
       - dotnet tool install --global dotnet-coverage
     #unzips the sonar scanner cli and exports it as a path variable
       - sh $pwd
