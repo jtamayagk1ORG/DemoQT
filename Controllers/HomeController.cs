@@ -13,7 +13,6 @@ public class HomeController : Controller
         _logger = logger;
     }
     final a = "A";
-    a="B";
 
     public IActionResult Index()
     {
