@@ -22,6 +22,7 @@ phases:
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
       - dotnet tool install --global dotnet-sonarscanner
       - dotnet tool install --global coverlet.console
+      - dotnet add package coverlet.collector --version 3.1.2
     #unzips the sonar scanner cli and exports it as a path variable
       - sh $pwd
       - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
@@ -30,8 +31,7 @@ phases:
   build:
     commands: 
     #builds a tests the project
-      - dotnet build
-      - dotnet test
+
     #runs the sonar scanner cli and logs in to org account using evniornment variables
       
     #packages and exports the results of the sonar scanner into results.json and sends that to the sonar org
@@ -39,17 +39,24 @@ phases:
 
       - dotnet sonarscanner begin 
         /k:"$PROJECT"
+        /o:"$ORG"
         /d:sonar.login="$LOGIN"
-        /d:sonar.cs.opencover.reportsPaths=coverage.xml
+        /d:sonar.host.url="https://sonarcloud.io"
+        /d:sonar.cs.opencover.reportsPaths="CoverageResults/coverage.opencover.xml" 
+        /d:"sonar.verbose=true"
+        #/d:sonar.cs.opencover.reportsPaths=coverage.xml
       - dotnet build --no-incremental
-      - coverlet .\CovExample.Tests\bin\Debug\net6.0\CovExample.Tests.dll
-        --target "dotnet" 
-        --targetargs "test --no-build"
-        -f=opencover 
-        -o="coverage.xml"
+      - dotnet test 
+        /p:CollectCoverage=true 
+        /p:CoverletOutput="../CoverageResults/" 
+        /p:MergeWith="../CoverageResults/coverage.json" 
+        /p:CoverletOutputFormat=\"opencover,json\" /maxcpucount:1 .\.sonar\scanner\dotnet-sonarscanner end 
+        /d:sonar.login="$LOGIN"
+      
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
-      - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
-      - sleep 5
+
+      #- sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
+      #- sleep 5
 
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT >result.json
       - cat result.json
