@@ -1,6 +1,6 @@
-//This buildspec.yml file is run during the CodeBuild section of the AWS CodePipeline
+#This buildspec.yml file is run during the CodeBuild section of the AWS CodePipeline
 version: 0.2
-//Retrieves secrets from SecretManager and sets them as enviornment variables
+#Retrieves secrets from SecretManager and sets them as enviornment variables
 env:
   secrets-manager:
     LOGIN: prod/sonar:SONARTOKEN
@@ -8,32 +8,32 @@ env:
     ORG: prod/sonar:ORG
     PROJECT: prod/sonar:PROJECT
 phases:
-//installs the dotnet runtime version using the latest release of version 6
+#installs the dotnet runtime version using the latest release of version 6
   install:
     runtime-versions:
       dotnet: 6.x
   pre_build:
     commands:
-    //Updates Advanced Package Tool library
+    #Updates Advanced Package Tool library
       - apt-get update
-    //Installs jq, used for command line based JSON processing
+    #Installs jq, used for command line based JSON processing
       - apt-get install -y jq
-    //Makes call to download the sonar scanner cli
+    #Makes call to download the sonar scanner cli
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
-    //unzips the sonar scanner cli and exports it as a path variable
+    #unzips the sonar scanner cli and exports it as a path variable
       - sh $pwd
       - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
       - ls $pwd
       - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
     commands: 
-    //builds a tests the project
+    #builds a tests the project
       - dotnet build
       - dotnet test
-    //runs the sonar scanner cli and logs in to org account using evniornment variables
+    #runs the sonar scanner cli and logs in to org account using evniornment variables
       - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
       - sleep 5
-    //packages and exports the results of the sonar scanner into results.json and sends that to the sonar org
+    #packages and exports the results of the sonar scanner into results.json and sends that to the sonar org
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT >result.json
       - cat result.json
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
