@@ -53,7 +53,7 @@ phases:
         /p:CoverletOutputFormat=\"opencover,json\" /maxcpucount:1 .\.sonar\scanner\dotnet-sonarscanner end 
         /d:sonar.login="$LOGIN"
       
-      - dotnet sonarscanner end /d:sonar.login="$LOGIN"
+      #- dotnet sonarscanner end /d:sonar.login="$LOGIN"
 
       #- sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
       #- sleep 5
