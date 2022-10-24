@@ -38,10 +38,11 @@ phases:
     #packages and exports the results of the sonar scanner into results.json and sends that to the sonar org
       
 
-      - dotnet sonarscanner begin 
-        /k:"$PROJECT" 
-        /d:sonar.login="$LOGIN" 
-        /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css" 
+      - dotnet sonarscanner begin
+        /k:"$PROJECT"
+        /d:sonar.login="$LOGIN"
+        /d:sonar.host.url="$HOST"
+        /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
         /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
       - dotnet build --no-incremental
       - dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
