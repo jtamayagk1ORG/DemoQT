@@ -12,7 +12,6 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-    final a = "A";
 
     public IActionResult Index()
     {
