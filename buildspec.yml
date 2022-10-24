@@ -42,10 +42,11 @@ phases:
         /o:"$ORG"
         /d:sonar.login="$LOGIN"
         /d:sonar.host.url="https://sonarcloud.io"
-        /d:sonar.cs.opencover.reportsPaths="CoverageResults/coverage.opencover.xml" 
+        /d:sonar.cs.opencover.reportsPaths=coverage.xml
+        #/d:sonar.cs.opencover.reportsPaths="CoverageResults/coverage.opencover.xml" 
         /d:"sonar.verbose=true"
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
-        #/d:sonar.cs.opencover.reportsPaths=coverage.xml
+        
       - dotnet build --no-incremental
       - dotnet test 
         /p:CollectCoverage=true 
