@@ -40,11 +40,12 @@ phases:
         /d:"sonar.verbose=true"
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
       - dotnet build --no-incremental
-      - dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
+      - dotnet test --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
-
       #- sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
       #- sleep 5
+
+
       #/d:sonar.cs.opencover.reportsPaths=coverage.xml
       #/d:sonar.cs.opencover.reportsPaths="CoverageResults/coverage.opencover.xml"
       #- curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT >result.json
