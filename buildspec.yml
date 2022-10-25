@@ -30,8 +30,7 @@ phases:
       - ls $pwd
       - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
-    commands: 
-      
+    commands:
       - dotnet sonarscanner begin 
         /k:"$PROJECT"
         /o:"$ORG"
@@ -41,15 +40,7 @@ phases:
         /d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
         /d:"sonar.verbose=true"
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
-      - dotnet test --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       - dotnet build --no-incremental
+      - dotnet test --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
-      #- sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
-      #- sleep 5
-
-
-      #/d:sonar.cs.opencover.reportsPaths=coverage.xml
-      #/d:sonar.cs.opencover.reportsPaths="CoverageResults/coverage.opencover.xml"
-      #- curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT >result.json
-      #- cat result.json
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
