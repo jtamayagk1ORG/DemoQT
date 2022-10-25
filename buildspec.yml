@@ -31,9 +31,14 @@ phases:
       - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
   build:
     commands: 
-      - dotnet sonarscanner begin /k:"$PROJECT"
-          /d:sonar.login="$LOGIN"
-          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+      - dotnet sonarscanner begin 
+        /k:"$PROJECT"
+        /o:"$ORG"
+        /d:sonar.login="$LOGIN"
+        /d:sonar.host.url="https://sonarcloud.io"
+        /d:sonar.cs.opencover.reportsPaths="coverage.xml, "
+        /d:"sonar.verbose=true"
+        /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
       - dotnet build --no-incremental
       - dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
