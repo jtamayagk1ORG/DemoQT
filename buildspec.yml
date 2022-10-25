@@ -37,14 +37,7 @@ phases:
         /d:sonar.host.url="https://sonarcloud.io"
         /d:sonar.cs.opencover.reportsPaths="./**/coverage.opencover.xml"
         /d:"sonar.verbose=true"
-        /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"  
-      - dotnet build --no-incremental
-      - dotnet test 
-        /p:CollectCoverage=true 
-        /p:CoverletOutput="../CoverageResults/" 
-        /p:MergeWith="../CoverageResults/coverage.xml" 
-        /p:CoverletOutputFormat=\"opencover,xml\" /maxcpucount:1
-      
+        /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
 
       #- sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
