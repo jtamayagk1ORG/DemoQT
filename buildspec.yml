@@ -36,11 +36,9 @@ phases:
         /o:"$ORG"
         /d:sonar.login="$LOGIN"
         /d:sonar.host.url="https://sonarcloud.io"
-        /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
-        /d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
         /d:"sonar.verbose=true"
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
       - dotnet build --no-incremental
-      - dotnet test --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      - dotnet test --collect:"Code Coverage"
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
