@@ -109,3 +109,4 @@ C:\DemoQuieTrack\MvcMovie\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.Commun
 C:\DemoQuieTrack\MvcMovie\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\DemoQuieTrack\MvcMovie\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 C:\DemoQuieTrack\MvcMovie\obj\Debug\net6.0\MvcMovie.csproj.CopyComplete
+C:\DemoQuieTrack\MvcMovie\bin\Debug\net6.0\coverage.json

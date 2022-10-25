@@ -7,7 +7,7 @@ public class testclass{
     }
 
     [Fact]
-    public void PassingTest(){
+    public void PassingTest2(){
         Assert.Equal(6, Calc.Add(4,2));
     }
 }
