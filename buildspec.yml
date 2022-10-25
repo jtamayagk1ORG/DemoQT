@@ -41,7 +41,7 @@ phases:
         /d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
         /d:"sonar.verbose=true"
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
-      - dotnet test --no-build --logger trx --collect:"XPlat Code Coverage" --settings coverlet.runsettings -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      - dotnet test --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       - dotnet build --no-incremental
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
       #- sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
