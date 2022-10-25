@@ -37,6 +37,7 @@ phases:
         /o:"$ORG"
         /d:sonar.login="$LOGIN"
         /d:sonar.host.url="https://sonarcloud.io"
+        /p:CollectCoverage=true
         /d:"sonar.verbose=true"
         /d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml"
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
