@@ -41,10 +41,10 @@ phases:
       - dotnet build --no-incremental
       - dotnet restore .
       - coverlet . \
-        --target "dotnet" \
-        --targetargs "test . /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger:trx;LogFileName=testresult.xml /p:CoverletOutput=CoverageResults/coverage.opencover.xml" \
-        --format opencover \
-        --output TestResults/ \
+        -t "dotnet" \
+        -a "test . /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger:trx;LogFileName=testresult.xml /p:CoverletOutput=CoverageResults/coverage.opencover.xml" \
+        -f opencover \
+        -o TestResults/ \
         --include-test-assembly
       
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
