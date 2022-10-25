@@ -35,10 +35,15 @@ phases:
         /o:"$ORG"
         /d:sonar.login="$LOGIN"
         /d:sonar.host.url="https://sonarcloud.io"
-        /d:sonar.cs.opencover.reportsPaths="./**/coverage.opencover.xml"
+        /d:sonar.cs.opencover.reportsPaths="coverage.xml"
         /d:"sonar.verbose=true"
         /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
-      - dotnet build --no-incremental
+      dotnet build --no-incremental
+      coverlet .\CovExample.Tests\bin\Debug\net6.0\CovExample.Tests.dll
+        --target "dotnet" 
+        --targetargs "test --no-build"
+        -f=opencover 
+        -o="coverage.xml"
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
 
       #- sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT -Dsonar.organization=$ORG
