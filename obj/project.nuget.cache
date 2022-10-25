@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "mlpevX49SBOkT5cN4Ilu4XswHPJNFmGxoqBJFKsPkFek2nc2oyjqHjSRfTMgqjY1MdRykplwHZB6tSw9tnc4BA==",
+  "dgSpecHash": "G9oxGlOESq+CmBNEIweXrJZWWYIZgGAR647wKFkLnNiRk/5OVseG/LrYL3p+8pWghIZ9J2GwM38LJqG3S/pAaA==",
   "success": true,
   "projectFilePath": "C:\\DemoQuieTrack\\MvcMovie\\MvcMovie.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Jonathan Amaya\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Jonathan Amaya\\.nuget\\packages\\microsoft.codecoverage\\17.4.0-release-20220926-01\\microsoft.codecoverage.17.4.0-release-20220926-01.nupkg.sha512",
     "C:\\Users\\Jonathan Amaya\\.nuget\\packages\\microsoft.net.test.sdk\\17.4.0-release-20220926-01\\microsoft.net.test.sdk.17.4.0-release-20220926-01.nupkg.sha512",
     "C:\\Users\\Jonathan Amaya\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
