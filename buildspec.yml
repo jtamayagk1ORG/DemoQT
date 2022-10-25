@@ -22,8 +22,9 @@ phases:
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
       - dotnet tool install --global dotnet-sonarscanner
       - dotnet tool install --global dotnet-coverage
-      - dotnet tool install --global coverlet.console
-      - dotnet add package coverlet.collector --version 3.1.2
+      - dotnet tool install --global dotnet-reportgenerator-globaltool
+      #- dotnet tool install --global coverlet.console
+      #- dotnet add package coverlet.collector --version 3.1.2
     #unzips the sonar scanner cli and exports it as a path variable
       - sh $pwd
       - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
@@ -37,8 +38,9 @@ phases:
         /d:sonar.login="$LOGIN"
         /d:sonar.host.url="https://sonarcloud.io"
         /d:"sonar.verbose=true"
-        /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
+        /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+        #/d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
       - dotnet build --no-incremental
-      - dotnet test --collect:"Code Coverage"
+      - dotnet-coverage collect -f xml -o coverage.xml dotnet test
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
