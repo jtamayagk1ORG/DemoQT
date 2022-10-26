@@ -1,17 +1,18 @@
 using System;
 using Xunit;
+using CompassNamespace;
 
 public class testclass2
 {
 	[Fact]
-	public void PassingTest()
+	public void PassingTest5()
 	{
-		Assert.Equal("Only cardinal directions", Compass.Direction(124));
+		Assert.Equal("Only cardinal directions", Compass.Directions(26));
 	}
 
 	[Fact]
-	public void PassingTest2()
+	public void PassingTest6()
 	{
-		Assert.Equal("West", Compass.Direction(270));
+		Assert.Equal("West", Compass.Directions(270));
 	}
 }
