@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using CalcNamespace;
 using CompassNamespace;
 
 public class testclass
