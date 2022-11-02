@@ -32,7 +32,7 @@ public class testclass
     [Fact]
     public void PassingTest5()
     {
-        Assert.False("South" == Compass.Directions(279));
+        Assert.False("South" == Compass.Directions(180));
     }
 
     //change
