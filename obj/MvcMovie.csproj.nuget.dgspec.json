@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT\\MvcMovie.csproj": {}
+    "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT_Fork\\MvcMovie.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT\\MvcMovie.csproj": {
+    "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT_Fork\\MvcMovie.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT\\MvcMovie.csproj",
+        "projectUniqueName": "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT_Fork\\MvcMovie.csproj",
         "projectName": "MvcMovie",
-        "projectPath": "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT\\MvcMovie.csproj",
+        "projectPath": "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT_Fork\\MvcMovie.csproj",
         "packagesPath": "C:\\Users\\jonathan.amaya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT\\obj\\",
+        "outputPath": "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT_Fork\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jonathan.amaya\\AppData\\Roaming\\NuGet\\NuGet.Config",
