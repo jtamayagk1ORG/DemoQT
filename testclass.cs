@@ -8,7 +8,7 @@ public class testclass
     [Fact]
     public void PassingTest()
     {
-        Assert.Equal(4, Calc.Add(2,2));
+        Assert.Equal(4, Calc.Add(2,4));
     }
 
     [Fact]
@@ -20,7 +20,7 @@ public class testclass
     [Fact]
     public void PassingTest3()
     {
-        Assert.Equal("North", Compass.Directions(0));
+        Assert.Equal("North3", Compass.Directions(0));
     }
 
     [Fact]
@@ -32,6 +32,6 @@ public class testclass
     [Fact]
     public void PassingTest5()
     {
-        Assert.False("South" == Compass.Directions(180));
+        Assert.Equal("South", Compass.Directions(170));
     }
 }
