@@ -23,9 +23,6 @@ phases:
       - dotnet tool install --global dotnet-sonarscanner
       - dotnet tool install --global dotnet-coverage
       - dotnet tool install --global dotnet-reportgenerator-globaltool
-      #- dotnet tool install --global coverlet.console
-      #- dotnet add package coverlet.collector --version 3.1.2
-    #unzips the sonar scanner cli and exports it as a path variable
       - sh $pwd
       - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
       - ls $pwd
@@ -39,7 +36,7 @@ phases:
         /d:sonar.host.url="$HOST"
         /d:"sonar.verbose=true"
         /d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml"
-        /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css"
+        /d:sonar.exclusions="**/*.html, **/*.cshtml, **/*.css, **/*.yml, **/*.json"
       - dotnet build --no-incremental
       - dotnet-coverage collect 'dotnet test' -f xml -o "coverage.xml"
       - dotnet sonarscanner end /d:sonar.login="$LOGIN"
