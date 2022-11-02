@@ -34,6 +34,4 @@ public class testclass
     {
         Assert.False("South" == Compass.Directions(180));
     }
-
-    //change
 }
