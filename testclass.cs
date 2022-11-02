@@ -28,4 +28,10 @@ public class testclass
     {
         Assert.Equal("South", Compass.Directions(180));
     }
+
+    [Fact]
+    public void PassingTest5()
+    {
+        Assert.False("South" == Compass.Directions(279));
+    }
 }

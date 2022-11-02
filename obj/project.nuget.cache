@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+rWjgW3bbuq3PoKC7OywxFlv2kE3xsquU9UtTbjdehE86jG0ldsVVRU2dqoKnm7CVRq3P6W8p0quym1tGe/QwQ==",
+  "dgSpecHash": "BKAss5VpMvZ+OGp09etZ+MICh3PHQX/YtXyPsOK14xL2/0Cpsu2txRStuAxSbeaytqMSpOzLfC8vBeA9ujfz8w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT\\MvcMovie.csproj",
+  "projectFilePath": "C:\\Users\\jonathan.amaya\\Source\\Repos\\DemoQT_Fork\\MvcMovie.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jonathan.amaya\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\jonathan.amaya\\.nuget\\packages\\microsoft.codecoverage\\17.4.0-release-20220926-01\\microsoft.codecoverage.17.4.0-release-20220926-01.nupkg.sha512",
