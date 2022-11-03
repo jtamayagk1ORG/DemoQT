@@ -14,7 +14,7 @@ phases:
       dotnet: 6.x
   pre_build:
     commands:
-    #Updates Advanced Package Tool library
+    #Updates Advanced Package Tool library 
       - apt-get update
     #Installs jq, used for command line based JSON processing
       - apt-get install -y jq
